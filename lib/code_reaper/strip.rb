@@ -1,4 +1,4 @@
-module StrReaper
+module CodeReaper
   class Strip
     attr_reader :str
 

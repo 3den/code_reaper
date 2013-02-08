@@ -1,5 +1,5 @@
 # -*- encoding: utf-8 -*-
-require File.expand_path('../lib/erb_reaper/version', __FILE__)
+require File.expand_path('../lib/code_reaper/version', __FILE__)
 
 Gem::Specification.new do |gem|
   gem.authors       = ["Marcelo Eden"]
@@ -11,7 +11,7 @@ Gem::Specification.new do |gem|
   gem.files         = `git ls-files`.split($\)
   gem.executables   = gem.files.grep(%r{^bin/}).map{ |f| File.basename(f) }
   gem.test_files    = gem.files.grep(%r{^(test|spec|features)/})
-  gem.name          = "erb_reaper"
+  gem.name          = "code_reaper"
   gem.require_paths = ["lib"]
-  gem.version       = ErbReaper::VERSION
+  gem.version       = CodeReaper::VERSION
 end

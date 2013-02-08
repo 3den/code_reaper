@@ -1,0 +1,17 @@
+<% if @inventories.blank? %>
+<p>there are no inventories</p>
+<% else %>
+<table>
+<% @inventories.each do |inventory| %>
+<tr>
+<td><%= inventory.title %></td>
+<td><%= inventory.description %></td>
+<td><%= inventory.user %></td>
+<td><%= link_to 'Show', inventory %></td>
+<td><%= link_to 'Edit', edit_inventory_path(inventory) %></td>
+<td><%= link_to 'Destroy', inventory, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+</tr>
+<% end %>
+</table>
+<% end %>
+<%= link_to 'New Inventory', new_inventory_path %>
