@@ -3,7 +3,7 @@ module CodeReaper
     attr_reader :dirname, :files
 
     def initialize(dirname, options={})
-      unless File.directory?(dirname)
+      unless ::File.directory?(dirname)
         raise InvalidDirectory, dirname
       end
 
@@ -25,13 +25,13 @@ module CodeReaper
     end
 
     def load_files options={}
-      @files = Dir["#{dirname}/**/**"]
+      @files = ::Dir["#{dirname}/**/**"]
       select_files options[:only]
       reject_files options[:except]
     end
 
     def select_files(regex)
-      files.reject! { |file| ::File.file? file }
+      files.select! { |file| ::File.file? file }
       files.select! { |file| file =~ regex } if regex
     end
 
