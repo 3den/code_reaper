@@ -14,4 +14,6 @@ Gem::Specification.new do |gem|
   gem.name          = "code_reaper"
   gem.require_paths = ["lib"]
   gem.version       = CodeReaper::VERSION
+
+  gem.add_development_dependency "rake"
 end
