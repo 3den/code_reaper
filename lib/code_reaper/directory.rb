@@ -2,8 +2,8 @@ module CodeReaper
   class Directory
     attr_reader :dirname, :files
 
-    def initialize(dirname, options={}, input = ::Dir)
-      unless input.exist?(dirname)
+    def initialize(dirname, options={})
+      unless File.directory?(dirname)
         raise InvalidDirectory, dirname
       end
 
@@ -14,7 +14,7 @@ module CodeReaper
     def strip regex
       files.map do |file|
         striped = File.new(file).strip regex
-        block_given? ? yield(striped) : striped
+        block_given? ? yield(file, striped) : striped
       end
     end
 
@@ -31,13 +31,12 @@ module CodeReaper
     end
 
     def select_files(regex)
-      return files unless regex
-      files.select! { |file| file =~ regex }
+      files.reject! { |file| ::File.file? file }
+      files.select! { |file| file =~ regex } if regex
     end
 
     def reject_files(regex)
-      return files unless regex
-      files.reject! { |file| file =~ regex }
+      files.reject! { |file| file =~ regex } if regex
     end
   end
 
